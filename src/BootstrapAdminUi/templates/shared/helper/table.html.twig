@@ -24,9 +24,16 @@
 {% macro row(grid, definition, row) %}
     {% import '@SyliusBootstrapAdminUi/shared/helper/dropdown.html.twig' as dropdown %}
 
-    <tr class="item" {{ sylius_test_html_attribute('row') }} {{ sylius_test_html_attribute('resource-id', row.id|default(null)) }}>
+    <tr class="item"
+        {% if definition.hasQuickEditableFields and row.id is defined %}
+            data-quick-edit-fetch-url="{{ path('sylius_bootstrap_admin_ui_quick_edit', {gridCode: definition.code, id: row.id}) }}"
+            data-quick-edit-submit-url="{{ grid.requestConfiguration is defined ? path(grid.requestConfiguration.getRouteName('update'), {id: row.id}) : null }}"
+            data-quick-edit-row="{{ row.id }}"
+            role="button" tabindex="0" style="cursor:pointer"
+        {% endif %}
+        {{ sylius_test_html_attribute('row') }} {{ sylius_test_html_attribute('resource-id', row.id|default(null)) }}>
         {% if definition.actionGroups.bulk is defined and definition.getEnabledActions('bulk')|length > 0 and row.id is defined %}
-            <td class="text-center"><input data-check-all-group="index" class="form-check-input" type="checkbox" value="{{ row.id }}" /></td>
+            <td class="text-center" onclick="event.stopPropagation()"><input data-check-all-group="index" class="form-check-input" type="checkbox" value="{{ row.id }}" /></td>
         {% endif %}
         {% for field in definition.enabledFields|sylius_sort_by('position') %}
             <td{% if field.options.vars.td_class is defined %} class="{{ field.options.vars.td_class }}"{% endif %}>
@@ -38,7 +45,7 @@
             </td>
         {% endfor %}
         {% if definition.actionGroups.item is defined and definition.getEnabledActions('item')|length > 0 %}
-            <td{% if field.options.vars.td_class is defined %} class="{{ field.options.vars.td_class }}"{% endif %} {{ sylius_test_html_attribute('actions') }}>
+            <td{% if field.options.vars.td_class is defined %} class="{{ field.options.vars.td_class }}"{% endif %} {{ sylius_test_html_attribute('actions') }} onclick="event.stopPropagation()">
                 <div class="d-flex gap-1 justify-content-end">
                     {% for action in definition.getEnabledActions('item')|sylius_sort_by('position') %}
                         {{ sylius_grid_render_action(grid, action, row) }}

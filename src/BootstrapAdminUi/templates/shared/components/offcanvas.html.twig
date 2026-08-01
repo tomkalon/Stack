@@ -1,0 +1,14 @@
+{% props id, title = null %}
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="{{ id }}" aria-labelledby="{{ id }}-label" {{ attributes }}>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="{{ id }}-label">
+            {% block header %}{{ title }}{% endblock %}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        {% block body %}{% endblock %}
+    </div>
+    {% block footer %}{% endblock %}
+</div>

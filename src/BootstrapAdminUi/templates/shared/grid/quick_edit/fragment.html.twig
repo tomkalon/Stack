@@ -1,0 +1,18 @@
+{% import '@SyliusBootstrapAdminUi/shared/helper/button.html.twig' as button %}
+{% form_theme form '@SyliusBootstrapAdminUi/shared/form_theme.html.twig' %}
+
+<form novalidate="novalidate" data-quick-edit-target="form" data-action="submit->quick-edit#submit">
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+
+    {% for name in fieldNames %}
+        {% if form.children[name] is defined %}
+            {{ form_row(form.children[name]) }}
+        {% endif %}
+    {% endfor %}
+
+    <div class="d-flex justify-content-end gap-2 mt-3">
+        {{ button.default({ text: 'sylius.ui.cancel'|trans, attr: {'data-bs-dismiss': 'offcanvas'} }) }}
+        {{ button.update() }}
+    </div>
+</form>

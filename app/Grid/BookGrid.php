@@ -48,10 +48,12 @@ final class BookGrid
             ->withFields(
                 StringField::create('title')
                     ->setLabel('app.ui.title')
-                    ->setSortable(true),
+                    ->setSortable(true)
+                    ->setQuickEdit(true),
                 StringField::create('authorName')
                     ->setLabel('app.ui.author_name')
-                    ->setSortable(true),
+                    ->setSortable(true)
+                    ->setQuickEdit(true),
                 EnumField::create('category')
                     ->setLabel('app.ui.category')
                     ->setSortable(true),

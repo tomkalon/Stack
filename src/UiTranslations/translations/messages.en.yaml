@@ -49,6 +49,7 @@ sylius:
             number_of_results: 'Showing %from% to %to% of %total% entries'
         report_it: 'Report it'
         reset: Reset
+        save_changes: 'Save changes'
         search: Search
         search_menu: 'Search menu'
         see_issue: 'See an issue'

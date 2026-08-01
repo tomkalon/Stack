@@ -44,4 +44,8 @@
             </div>
         </div>
     </div>
+
+    {% if definition.hasQuickEditableFields %}
+        {{ component('sylius_bootstrap_admin_ui:quick_edit_offcanvas', {'data-controller': 'quick-edit'}) }}
+    {% endif %}
 {% endif %}

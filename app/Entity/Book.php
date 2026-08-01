@@ -38,7 +38,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
     routePrefix: '/admin',
     operations: [
         new Create(),
-        new Update(),
+        new Update(methods: ['GET', 'PUT', 'POST', 'PATCH']),
         new Index(grid: BookGrid::class),
         new Index(
             template: '@SyliusAdminUi/crud/index.html.twig',

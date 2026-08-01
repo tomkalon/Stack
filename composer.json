@@ -23,7 +23,7 @@
         "league/csv": "^9.0",
         "pagerfanta/doctrine-orm-adapter": "^4.6",
         "pagerfanta/twig": "^4.6",
-        "sylius/grid-bundle": "^1.13 || ^1.15@alpha",
+        "sylius/grid-bundle": "dev-feature/quick-edit",
         "sylius/resource-bundle": "^1.13 || ^1.14@alpha",
         "symfony/asset": "^6.4 || ^7.4 || ^8.0",
         "symfony/asset-mapper": "^6.4 || ^7.4 || ^8.0",
@@ -93,6 +93,9 @@
             "Tests\\Sylius\\UiTranslations\\": "src/UiTranslations/tests/"
         }
     },
+    "repositories": [
+        { "type": "path", "url": "/home/raindog/grid-bundle", "options": { "symlink": true } }
+    ],
     "replace": {
         "sylius/admin-ui": "self.version",
         "sylius/bootstrap-admin-ui": "self.version",
